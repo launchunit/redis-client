@@ -1,0 +1,17 @@
+{
+  "name": "redis-client",
+  "version": "1.0.0",
+  "description": "Nodejs client for Redis",
+  "author": "Karan Sakhuja <kevin.sakhuja@gmail.com> (http://kevify.com)",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava test/index.js"
+  },
+  "dependencies": {
+    "hiredis": "^0.4.1",
+    "ioredis": "^1.15.0"
+  },
+  "devDependencies": {
+    "ava": "^0.7.0"
+  }
+}
