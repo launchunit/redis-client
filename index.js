@@ -1,6 +1,12 @@
 
 'use strict';
 
+/**
+ * Module dependencies.
+ * @private
+ */
+const Redis = require('ioredis');
+
 
 /**
  * @params {String} opts.redisUrl (Required)
@@ -34,17 +40,16 @@ exports.connect = opts => {
 
 
     // Init the Client
-    const Client = new Redis(redisUrl);
+    const Client = new Redis(opts.redisUrl)
 
-    // Setting up Redis Logging
-    if (opts.debug) {
-      require('./lib/debug')(opts.redisUrl, opts.logger);
-    }
-
-
-    // Redis Start
-    Client.on('ready', function(err) {
+    .on('ready', function(err) {
       opts.logger('Redis Connected');
+
+      // Setting up Redis Logging
+      if (opts.debug) {
+        require('./lib/debug')(opts.redisUrl, opts.logger);
+      }
+
       return resolve(Client);
     })
     .on('error', function(err) {

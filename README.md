@@ -34,4 +34,7 @@ Redis.connect({
 #### Run Tests
 ```bash
 $ npm test
+
+# OR for continuous testing
+$ nodemon --exec "npm test"
 ```
