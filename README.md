@@ -10,10 +10,7 @@ const Redis = require('redis-client');
 
 /**
  * @params {String} opts.redisUrl (Required)
- *
- * @params {Boolean|Function} opts.logger
- *           - Can be a Boolean (True = Default=console)
- *           - Logger Function(msg, context)
+ * @params {Boolean} opts.debug (Optional, Default = true)
  *
  * @return {Promise}
  * @public

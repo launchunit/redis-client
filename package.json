@@ -12,6 +12,7 @@
     "ioredis": "^1.15.0"
   },
   "devDependencies": {
-    "ava": "^0.7.0"
+    "ava": "^0.7.0",
+    "express-logger": "git@github.com:launchunit/express-logger.git"
   }
 }

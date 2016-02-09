@@ -10,17 +10,17 @@ const Redis = require('ioredis');
 
 /**
  * @params {String} opts.redisUrl (Required)
- *
- * @params {Boolean|Function} opts.logger
- *           - Can be a Boolean (True = Default=console)
- *           - Logger Function(msg, context)
+ * @params {Boolean} opts.debug (Optional, Default = true)
  *
  * @return {Promise}
  * @public
  */
 exports.connect = opts => {
 
-  opts = opts || {};
+  opts = Object.assign({
+    debug: true
+  }, opts);
+
 
   return new Promise((resolve, reject) => {
 
@@ -28,32 +28,21 @@ exports.connect = opts => {
       return reject(new Error('redisUrl is required.'));
 
 
-    // Assign a debug flag
-    if (opts.logger !== false) {
-      opts.debug = true;
-    }
-
-    // Setup a Logging Provider
-    opts.logger = typeof opts.logger === 'function'
-                    ? opts.logger
-                    : console.log;
-
-
     // Init the Client
     const Client = new Redis(opts.redisUrl)
 
     .on('ready', function(err) {
-      opts.logger('Redis Connected');
+      logger.info('Redis Connected');
 
       // Setting up Redis Logging
       if (opts.debug) {
-        require('./lib/debug')(opts.redisUrl, opts.logger);
+        require('./lib/debug')(opts.redisUrl);
       }
 
       return resolve(Client);
     })
     .on('error', function(err) {
-      opts.logger(err);
+      logger.error(err);
       return reject(err);
     });
 
