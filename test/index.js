@@ -2,7 +2,7 @@
 const test = require('ava');
 
 // Global Logger
-require('express-logger')({ level: 'debug' });
+require('logger')({ level: 'debug' });
 
 // Init Things
 const client = require('../');
