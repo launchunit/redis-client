@@ -13,6 +13,6 @@
   },
   "devDependencies": {
     "ava": "^0.7.0",
-    "logger": "git@github.com:launchunit/logger.git"
+    "logger": "https://github.com/launchunit/logger.git"
   }
 }
